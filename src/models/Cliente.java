@@ -1,40 +1,45 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Cliente {
-    private long numeroDaConta;
-    private String titular;
-    private double saldo;
-    private String tipoDeConta;
+    private String nome;
+    private long cpf;
+    private ArrayList<ContaBancaria> contas;
 
-    public long getNumeroDaConta() {
-        return numeroDaConta;
+    public Cliente(String nome, long cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.contas = new ArrayList<>();
     }
 
-    public void setNumeroDaConta(long numeroDaConta) {
-        this.numeroDaConta = numeroDaConta;
+    public String getNome() {
+        return nome;
     }
 
-    public String getTitular() {
-        return titular;
+    public long getCpf() {
+        return cpf;
     }
 
-    public void setTitular(String titular) {
-        this.titular = titular;
+    public ArrayList<ContaBancaria> getContas() {
+        return contas;
     }
 
-    public double getSaldo() {
-        return saldo;
+    public void adicionarConta(ContaBancaria conta) {
+        contas.add(conta);
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public void removerConta(ContaBancaria conta) {
+        contas.remove(conta);
     }
 
-    public String getTipoDeConta() {
-        return tipoDeConta;
-    }
-
-    public void setTipoDeConta(String tipoDeConta) {
-        this.tipoDeConta = tipoDeConta;
+    public void consultarConta(long numeroConta) {
+        for (int i = 0; i < contas.size(); i++) {
+            if (contas.get(i).getNumeroDaConta() == numeroConta) {
+                System.out.println("Conta " + numeroConta + " encontrada com sucesso");
+                return;
+            }
+        }
+        System.out.println("Erro: Conta não encontrada");
     }
 }
